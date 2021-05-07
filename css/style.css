@@ -1,0 +1,123 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  margin: 0 auto;
+}
+
+input, button, textarea {
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+a, a:visited, a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.crypto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crypto__title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.crypto__main {
+  display: flex;
+  width: 1000px;
+  height: 500px;
+  padding: 30px;
+  background-color: #181531;
+  color: #fff;
+}
+
+.crypto__left {
+  margin-right: 50px;
+}
+
+.overview-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.overview-main {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 130px;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #1e1c4b;
+  margin-bottom: 20px;
+}
+
+.overview-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 40px;
+  border: 5px solid #ffbb3d;
+  border-radius: 50%;
+}
+
+.overview__right {
+  margin-left: 30px;
+}
+
+.overview__min {
+  margin-bottom: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  height: 150px;
+  padding: 10px;
+  background-color: #5a38d3;
+  border-radius: 20px;
+}
+
+.info-logo {
+  width: 10px;
+  height: 10px;
+  background-color: #919191;
+}
+
+.info-currency {
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=style.css.map */
