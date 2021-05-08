@@ -23,8 +23,11 @@
             <h2 class="overview__title">Обзор</h2>
             <div class="overview__main">
               <div class="overview__total-wrapper">
-                <div id="daily-value" class="overview__total">0</div>
+                <div id="daily-value" class="overview__total btc">0</div>
                 <p class="overview__total-text">Сейчас</p>
+                <div class="overview__total-image">
+                  <img id="total-crypto-img" src="img/bitcoin.svg" alt="overview-img" class="overview__total-img">
+                </div>
                 <div class="overview__total-border"></div>
               </div>
               <div class="overview__right">
@@ -82,19 +85,19 @@
             <div class="cryptos">
               <h3 class="cryptos__title">Криптовалюты</h3>
               <div class="cryptos__content">
-                <div class="cryptos__single">
+                <div id="crypto-btn-btc" class="cryptos__single">
                   <div class="cryptos__image">
                     <img src="img/bitcoin.svg" alt="crypto-img" class="cryptos__img">
                   </div>
                   <div class="cryptos__difference">
-                    <div class="cryptos__difference-value">500</div>
+                    <div class="cryptos__difference-value">0</div>
                     <div class="cryptos__difference-arrow">
                       <img src="img/arrow-up.svg" alt="arrow" class="cryptos__arrow">
                     </div>
                   </div>
                   <p class="cryptos__name">BTC</p>
                 </div>
-                <div class="cryptos__single">
+                <div id="crypto-btn-eth" class="cryptos__single">
                   <div class="cryptos__image  cryptos__image--eth">
                     <img src="img/ethereum.svg" alt="crypto-img" class="cryptos__img">
                   </div>
@@ -106,7 +109,7 @@
                   </div>
                   <p class="cryptos__name">ETH</p>
                 </div>
-                <div class="cryptos__single">
+                <div id="crypto-btn-xrp" class="cryptos__single">
                   <div class="cryptos__image  cryptos__image--xrp">
                     <img src="img/ripple.svg" alt="crypto-img" class="cryptos__img">
                   </div>
