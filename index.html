@@ -1,45 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crypto</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <main class="crypto">
-    <div class="crypto__main">
-      <div class="crypto__left">
-        <h1 class="crypto__title">Отслеживание криптовалюты</h1>
-        <div class="overview">
-          <h2 class="overview-title">Обзор</h2>
-          <div class="overview-main">
-            <div id="daily-value" class="overview-total">5000</div>
-            <div class="overview__right">
-              <p id="daily-max" class="overview__max">4900</p>
-              <p id="daily-min" class="overview__min">4500</p>
+  <div class="body__wrapper">
+    <main class="crypto">
+      <div class="crypto__main">
+        <div class="crypto__left">
+          <h1 class="crypto__title">Отслеживание криптовалюты</h1>
+          <div class="overview">
+            <h2 class="overview__title">Обзор</h2>
+            <div class="overview__main">
+              <div class="overview__total-wrapper">
+                <div id="daily-value" class="overview__total">0</div>
+                <p class="overview__total-text">Сейчас</p>
+                <div class="overview__total-border"></div>
+              </div>
+              <div class="overview__right">
+                <p id="daily-max" class="overview__max">0</p>
+                <p class="overview__max-title">Максимум за день</p>
+                <p id="daily-min" class="overview__min">0</p>
+                <p class="overview__min-title">Минимум за день</p>
+              </div>
             </div>
           </div>
           <div class="exchange">
-            8500
+            <div class="exchange__block">
+              <select type="text" class="exchange__input">
+                <option value="BTC">Bitcoin</option>
+                <option value="ETH">ETH</option>
+                <option value="XRP">XRP</option>
+              </select>
+              <input type="number" class="exchange__main-input">
+              <p class="exchange__info">Bla</p>
+            </div>
+            <div class="exchange__block">
+              <select type="text" class="exchange__input">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="RUB">RUB</option>
+              </select>
+              <input type="number" class="exchange__main-input">
+              <p class="exchange__info">Bla</p>
+            </div>
+            <button class="exchange__btn">
+              <img src="img/exchange.svg" alt="exchange-img" class="exchange__img">
+            </button>
+          </div>
+        </div>
+        <div class="crypto__right">
+          <div class="crypto__right-top">
+            <div class="currency">
+              <h3 class="currency__title">Валюта</h3>
+              <div class="currency__content">
+                <div id="dollar-btn" class="currency__single">
+                  <img src="img/dollar.svg" alt="currency-img" class="currency__img">
+                </div>
+                <div id="euro-btn" class="currency__single">
+                  <img src="img/euro.svg" alt="currency-img" class="currency__img">
+                </div>
+                <div id="sterling-btn" class="currency__single">
+                  <img src="img/sterling.svg" alt="currency-img" class="currency__img">
+                </div>
+                <div id="ruble-btn" class="currency__single">
+                  <img src="img/ruble.svg" alt="currency-img" class="currency__img">
+                </div>
+              </div>
+            </div>
+            <div class="cryptos">
+              <h3 class="cryptos__title">Криптовалюты</h3>
+              <div class="cryptos__content">
+                <div class="cryptos__single">
+                  <div class="cryptos__image">
+                    <img src="img/bitcoin.svg" alt="crypto-img" class="cryptos__img">
+                  </div>
+                  <div class="cryptos__difference">
+                    <div class="cryptos__difference-value">500</div>
+                    <div class="cryptos__difference-arrow">
+                      <img src="img/arrow-up.svg" alt="arrow" class="cryptos__arrow">
+                    </div>
+                  </div>
+                  <p class="cryptos__name">BTC</p>
+                </div>
+                <div class="cryptos__single">
+                  <div class="cryptos__image  cryptos__image--eth">
+                    <img src="img/ethereum.svg" alt="crypto-img" class="cryptos__img">
+                  </div>
+                  <div class="cryptos__difference">
+                    <div class="cryptos__difference-value">0</div>
+                    <div class="cryptos__difference-arrow">
+                      <img src="img/arrow-up.svg" alt="arrow" class="cryptos__arrow">
+                    </div>
+                  </div>
+                  <p class="cryptos__name">ETH</p>
+                </div>
+                <div class="cryptos__single">
+                  <div class="cryptos__image  cryptos__image--xrp">
+                    <img src="img/ripple.svg" alt="crypto-img" class="cryptos__img">
+                  </div>
+                  <div class="cryptos__difference">
+                    <div class="cryptos__difference-value">0</div>
+                    <div class="cryptos__difference-arrow">
+                      <img src="img/arrow-up.svg" alt="arrow" class="cryptos__arrow">
+                    </div>
+                  </div>
+                  <p class="cryptos__name">XRP</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="crypto__right">
-        <div class="crypto__right-top">
-          <div class="info">
-            <div class="info-logo"></div>
-            <p class="info-currency">5000</p>
-            <p class="info-text">BTC</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
+  </div>
+
 
   <script src='js/script.js'></script>
 </body>
+
 </html>
