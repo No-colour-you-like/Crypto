@@ -21,32 +21,25 @@ const dailyValue = document.querySelector('#daily-value'),
 
 
 // Fetch API data
-const fetchInfo = async (cryptocurrency, currency, currencyIcon, limit = 1) => {
-  const crypto = await fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${cryptocurrency}&tsym=${currency}&limit=${limit}`);
+const fetchInfo = async (cryptocurrency, currency, currencyIcon) => {
+  const crypto = await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`);
   const resp = await crypto.json();
-  const cryptoDailyData = resp.Data.Data;
+  const data = await resp.RAW[cryptocurrency][currency];
 
-  let dataClose = cryptoDailyData[cryptoDailyData.length - 1].close,
-    dataHigh = cryptoDailyData[cryptoDailyData.length - 1].high,
-    dataLow = cryptoDailyData[cryptoDailyData.length - 1].low;
-
-  dailyValue.textContent = dataClose.toLocaleString('ru') + ` ${currencyIcon}`;
-  dailyMax.textContent = dataHigh.toLocaleString('ru');
-  dailyMin.textContent = dataLow.toLocaleString('ru');
+  dailyValue.textContent = data.PRICE.toLocaleString('ru') + ` ${currencyIcon}`;
+  dailyMax.textContent = data.HIGHDAY.toLocaleString('ru');
+  dailyMin.textContent = data.LOWDAY.toLocaleString('ru');
 };
 
 fetchInfo('BTC', 'USD', '$');
 
 // Fetch and set cryptocurrency day difference
 const fetchDiffrenceInfo = async (cryptocurrency, currency, limit = 1) => {
-  const crypto = await fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${cryptocurrency}&tsym=${currency}&limit=${limit}`);
+  const crypto = await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`);
   const resp = await crypto.json();
-  const cryptoDailyData = resp.Data.Data;
+  const data = await resp.RAW[cryptocurrency][currency]; 
 
-  let dataOpen = cryptoDailyData[cryptoDailyData.length - 1].open,
-    dataClose = cryptoDailyData[cryptoDailyData.length - 1].close;
-
-  const calculateDifference = (100 - (dataOpen * 100 / dataClose)).toFixed(2);
+  const calculateDifference = (100 - (data.OPENDAY * 100 / data.PRICE)).toFixed(2);
 
   const setDifference = (cryptocurrencyIndex) => {
     cryptoDifferenceValue[cryptocurrencyIndex].textContent = calculateDifference + ' %';
