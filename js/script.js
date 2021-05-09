@@ -37,7 +37,7 @@ fetchInfo('BTC', 'USD', '$');
 const fetchDiffrenceInfo = async (cryptocurrency, currency, limit = 1) => {
   const crypto = await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`);
   const resp = await crypto.json();
-  const data = await resp.RAW[cryptocurrency][currency]; 
+  const data = await resp.RAW[cryptocurrency][currency];
 
   const calculateDifference = (100 - (data.OPENDAY * 100 / data.PRICE)).toFixed(2);
 
@@ -141,3 +141,76 @@ exchangeBtn.addEventListener('click', () => {
 
   fetchCurrencies(exchangeSelectFirst.value, exchangeSelectSecond.value);
 });
+
+
+//Chart 
+
+const fetchHistoricalData = async () => {
+  const historicalData = await fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=30')
+  const resp = await historicalData.json();
+  const data = resp.Data.Data;
+
+  let allDaysData = [];
+
+  const dayDatas = () => {
+    data.forEach(day => {
+      allDaysData.push(day.close);
+    })
+  }
+
+  dayDatas();
+
+  console.log(allDaysData);
+
+  const ctx = document.querySelector('#myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: allDaysData,
+      datasets: [{
+        label: '# of Votes',
+        data: allDaysData,
+        backgroundColor: [
+          'rgba(255, 255, 255, 1)',
+        ],
+        borderColor: [
+          'rgba(106, 83, 199, 1)',
+        ],
+        borderWidth: 3,
+        tension: 0.3,
+      }],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false,
+          grid: {
+            color: '#1D1A37FF'
+          },
+          ticks: {
+            maxTicksLimit: 4,
+            color: '#655F8DFF'
+          }
+        },
+        x: {
+          grid: {
+            color: '#1D1A37FF',
+            tickBorderDash: [90]
+          },
+          ticks: {
+            display: false,
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  })
+
+
+}
+
+fetchHistoricalData()
