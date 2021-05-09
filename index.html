@@ -40,25 +40,25 @@
           </div>
           <div class="exchange">
             <div class="exchange__block">
-              <select type="text" class="exchange__input">
-                <option value="BTC">Bitcoin</option>
+              <select id="exchange-select-first" type="text" class="exchange__input">
+                <option value="BTC">BTC</option>
                 <option value="ETH">ETH</option>
                 <option value="XRP">XRP</option>
               </select>
-              <input type="number" class="exchange__main-input">
+              <input id="exchange-input-first" type="number" class="exchange__main-input">
               <p class="exchange__info">Bla</p>
             </div>
             <div class="exchange__block">
-              <select type="text" class="exchange__input">
+              <select id="exchange-select-second" type="text" class="exchange__input">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
                 <option value="GBP">GBP</option>
                 <option value="RUB">RUB</option>
               </select>
-              <input type="number" class="exchange__main-input">
+              <div id="exchange-input-second" class="exchange__main-input"></div>
               <p class="exchange__info">Bla</p>
             </div>
-            <button class="exchange__btn">
+            <button id="exchange-btn" class="exchange__btn">
               <img src="img/exchange.svg" alt="exchange-img" class="exchange__img">
             </button>
           </div>
