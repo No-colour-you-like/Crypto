@@ -384,5 +384,32 @@ img {
 }
 
 .chart {
-  max-width: 650px;
+  width: 660px;
+}
+
+.chart-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  margin-right: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: #251F4BFF;
+  border-radius: 20px;
+  font-size: 18px;
+  color: #63608FFF;
+  font-weight: 600;
+  box-shadow: 0 0 30px #14132b;
+  transition: 0.5s;
+}
+
+.chart-btn:hover {
+  background-color: #2B2759FF;
 }

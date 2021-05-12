@@ -17,7 +17,12 @@ const dailyValue = document.querySelector('#daily-value'),
   exchangeSelectSecond = document.querySelector('#exchange-select-second'),
   exchangeInputFirst = document.querySelector('#exchange-input-first'),
   exchangeInputSecond = document.querySelector('#exchange-input-second'),
-  exchangeBtn = document.querySelector('#exchange-btn');
+  exchangeBtn = document.querySelector('#exchange-btn'),
+  chartDayBtn = document.querySelector('#chart-day-btn'),
+  chartMonthBtn = document.querySelector('#chart-month-btn'),
+  chartYearBtn = document.querySelector('#chart-year-btn');
+
+const ctx = document.querySelector('#myChart').getContext('2d');
 
 
 // Fetch API data
@@ -100,10 +105,22 @@ euroBtn.addEventListener('click', () => changeDailyCurrency('EUR', '€'));
 sterlingBtn.addEventListener('click', () => changeDailyCurrency('GBP', '£'));
 rubleBtn.addEventListener('click', () => changeDailyCurrency('RUB', '₽'));
 
-// Set main cryptocurrency on click
-cryptoBtnBTC.addEventListener('click', () => setCryptocurrency('img/bitcoin.svg', 'BTC'));
-cryptoBtnETH.addEventListener('click', () => setCryptocurrency('img/ethereum.svg', 'ETH'));
-cryptoBtnXRP.addEventListener('click', () => setCryptocurrency('img/ripple.svg', 'XRP'));
+// Set main cryptocurrency on click  and change chart
+cryptoBtnBTC.addEventListener('click', () => {
+  setCryptocurrency('img/bitcoin.svg', 'BTC');
+  myChart.destroy();
+  fetchHistoricalData('BTC', 'USD', '30');
+});
+cryptoBtnETH.addEventListener('click', () => {
+  setCryptocurrency('img/ethereum.svg', 'ETH');
+  myChart.destroy();
+  fetchHistoricalData('ETH', 'USD', '30');
+});
+cryptoBtnXRP.addEventListener('click', () => {
+  setCryptocurrency('img/ripple.svg', 'XRP');
+  myChart.destroy();
+  fetchHistoricalData('XRP', 'USD', '30');
+});
 
 
 // Fetch and calculate currencies
@@ -144,32 +161,44 @@ exchangeBtn.addEventListener('click', () => {
 
 
 //Chart 
-
-const fetchHistoricalData = async () => {
-  const historicalData = await fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=30')
+const fetchHistoricalData = async (cryptocurrency, currency, limit, time = 'histoday') => {
+  const historicalData = await fetch(`https://min-api.cryptocompare.com/data/v2/${time}?fsym=${cryptocurrency}&tsym=${currency}&limit=${limit}`);
   const resp = await historicalData.json();
   const data = resp.Data.Data;
 
   let allDaysData = [];
+  let allDaysTimeIUnix = [];
+  let allDaysTimeData = [];
 
-  const dayDatas = () => {
-    data.forEach(day => {
-      allDaysData.push(day.close);
-    })
-  }
+  data.forEach(day => {
+    allDaysData.push(day.close);
+    allDaysTimeIUnix.push(day.time);
+    allDaysTimeData = allDaysTimeIUnix.map(unixTime => {
+      if (time === 'histohour') {
+        return new Date(unixTime * 1000).toLocaleString('ru-RU').slice(11, -3);
+      } else {
+        return new Date(unixTime * 1000).toLocaleString('ru-RU').slice(0, -10);
+      }
+    });
+  });
 
-  dayDatas();
+  chart(allDaysData, allDaysTimeData);
+};
 
-  console.log(allDaysData);
+fetchHistoricalData('BTC', 'USD', '30');
 
-  const ctx = document.querySelector('#myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
+
+//Chart settings 
+let myChart;
+
+const chart = (daysData, timeData) => {
+  myChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: allDaysData,
+      labels: timeData,
       datasets: [{
-        label: '# of Votes',
-        data: allDaysData,
+        label: '',
+        data: daysData,
         backgroundColor: [
           'rgba(255, 255, 255, 1)',
         ],
@@ -189,8 +218,11 @@ const fetchHistoricalData = async () => {
           },
           ticks: {
             maxTicksLimit: 4,
-            color: '#655F8DFF'
-          }
+            color: '#655F8DFF',
+            callback: function (value, index, values) {
+              return value + ' $';
+            }
+          },
         },
         x: {
           grid: {
@@ -198,19 +230,42 @@ const fetchHistoricalData = async () => {
             tickBorderDash: [90]
           },
           ticks: {
-            display: false,
+            display: true,
+            color: '#655F8DFF'
           }
         }
+      },
+      interaction: {
+        mode: 'x'
       },
       plugins: {
         legend: {
           display: false
+        },
+        tooltip: {
+          backgroundColor: 'rgba(37, 31, 75, 1)',
+          displayColors: false
         }
       }
     }
-  })
+  });
+};
 
 
-}
+//Time chart bts
+const changeChartInterval = (interval, time) => {
+  myChart.destroy();
 
-fetchHistoricalData()
+  if (dailyValue.classList.contains('btc')) {
+    fetchHistoricalData('BTC', 'USD', interval, time);
+  } else if (dailyValue.classList.contains('eth')) {
+    fetchHistoricalData('ETH', 'USD', interval, time);
+  } else {
+    fetchHistoricalData('XRP', 'USD', interval, time);
+  }
+};
+
+//Change chart interval
+chartYearBtn.addEventListener('click', () => changeChartInterval('365'));
+chartMonthBtn.addEventListener('click', () => changeChartInterval('30'));
+chartDayBtn.addEventListener('click', () => changeChartInterval('24', 'histohour'));
