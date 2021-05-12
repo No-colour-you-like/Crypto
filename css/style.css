@@ -124,7 +124,7 @@ img {
   width: 190px;
   height: 190px;
   border-radius: 50%;
-  background: conic-gradient(#EF6E5BFF 100deg, #212677FF 100deg 200deg, #583FBFFF 160deg);
+  background: conic-gradient(#EF6E5BFF, #212677FF, #583FBFFF);
 }
 
 .overview__total-text {
