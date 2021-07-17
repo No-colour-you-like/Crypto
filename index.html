@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Check</title>
+  <title>Crypto Tracking</title>
 
   <link rel="icon" href="img/crypto-logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -19,13 +19,13 @@
     <main class="crypto">
       <div class="crypto__main">
         <div class="crypto__left">
-          <h1 class="crypto__title">Отслеживание криптовалюты</h1>
+          <h1 class="crypto__title">Crypto Tracking</h1>
           <div class="overview">
-            <h2 class="overview__title">Обзор</h2>
+            <h2 class="overview__title">Overview</h2>
             <div class="overview__main">
               <div class="overview__total-wrapper">
                 <div id="daily-value" class="overview__total btc">0</div>
-                <p class="overview__total-text">Сейчас</p>
+                <p class="overview__total-text">Now</p>
                 <div class="overview__total-image">
                   <img id="total-crypto-img" src="img/bitcoin.svg" alt="overview-img" class="overview__total-img">
                 </div>
@@ -33,9 +33,9 @@
               </div>
               <div class="overview__right">
                 <p id="daily-max" class="overview__max">0</p>
-                <p class="overview__max-title">Максимум за день</p>
+                <p class="overview__max-title">Max per day</p>
                 <p id="daily-min" class="overview__min">0</p>
-                <p class="overview__min-title">Минимум за день</p>
+                <p class="overview__min-title">Min per day</p>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@
         <div class="crypto__right">
           <div class="crypto__right-top">
             <div class="currency">
-              <h3 class="currency__title">Валюта</h3>
+              <h3 class="currency__title">Currency</h3>
               <div class="currency__content">
                 <div id="dollar-btn" class="currency__single">
                   <img src="img/dollar.svg" alt="currency-img" class="currency__img">
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="cryptos">
-              <h3 class="cryptos__title">Криптовалюты</h3>
+              <h3 class="cryptos__title">Cryptocurrency</h3>
               <div class="cryptos__content">
                 <div id="crypto-btn-btc" class="cryptos__single">
                   <div class="cryptos__image">
@@ -125,9 +125,9 @@
           </div>
           <div class="crypto__right-bottom">
             <div class="chart-btns">
-              <button id="chart-day-btn" class="chart-btn">День</button>
-              <button id="chart-month-btn" class="chart-btn">Месяц</button>
-              <button id="chart-year-btn" class="chart-btn">Год</button>
+              <button id="chart-day-btn" class="chart-btn">Day</button>
+              <button id="chart-month-btn" class="chart-btn">Month</button>
+              <button id="chart-year-btn" class="chart-btn">Year</button>
             </div>
             <canvas id="myChart" class="chart" width="660px" height="320px"></canvas>
           </div>
